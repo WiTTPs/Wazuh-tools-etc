@@ -1,10 +1,10 @@
 <decoder name="windows_dns_debug_log">
-  <prematch type="pcre2">^(\d{2}\.\d{2}\.\d{4})\b.*\bPACKET\b.*$</prematch>
+  <prematch type="pcre2">^\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}:\d{2}.*\bPACKET\b</prematch>
 </decoder>
 
 <decoder name="windows_dns_debug_log">
   <parent>windows_dns_debug_log</parent>
-  <regex type="pcre2">(\d{2}\.\d{2}\.\d{4})</regex>
+  <regex type="pcre2">^(\d{2}\.\d{2}\.\d{4})</regex>
   <order>dnsdate</order>
 </decoder>
 
@@ -14,16 +14,14 @@
   <order>srcip</order>
 </decoder>
 
-
-<decoder name="windows_dns_debug_log">
-  <parent>windows_dns_debug_log</parent>
-  <regex type="pcre2">(\(\d+\)[A-Za-z0-9-]+(?:\(\d+\)[A-Za-z0-9-]+)*\(0\))</regex>
-  <order>dns.query_wire</order>
-</decoder>
-
-
 <decoder name="windows_dns_debug_log">
   <parent>windows_dns_debug_log</parent>
   <regex type="pcre2">((Snd)|(Rcv))</regex>
   <order>transmittype</order>
+</decoder>
+
+<decoder name="windows_dns_debug_log">
+  <parent>windows_dns_debug_log</parent>
+  <regex type="pcre2">\]\s+\w+\s+([\w\.\-]+)\s*$</regex>
+  <order>dns.query</order>
 </decoder>
