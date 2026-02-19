@@ -1,16 +1,20 @@
+<!-- DNS Debug logs from the AD DNS Servers -->
+
 <group name="windows_dns_debug">
     <rule id="700100" level="3">
         <decoded_as>windows_dns_debug_log</decoded_as>
         <description>Windows DNS Debug: Query or Response logged</description>
         <group>windows,dns,debug</group>
     </rule>
-    <rule id="700101" level="4">
+	
+    <rule id="700110" level="4">
         <if_sid>700100</if_sid>
         <field name="transmittype">Snd</field>
         <description>DNS Send</description>
         <group>windows,dns,debug</group>
     </rule>
-    <rule id="700102" level="4">
+
+    <rule id="700111" level="4">
         <if_sid>700100</if_sid>
         <field name="transmittype">Rcv</field>
         <description>DNS Receive</description>
